@@ -1,199 +1,177 @@
-# 📊 Tech Corp Analytics
+<p align="center">
+  <img src="Power BI/Tech_Corp_Analytics_Dashboard.png" alt="Tech Corp Analytics Dashboard" width="100%">
+</p>
 
-## SQL Business Intelligence & Business Analytics Project
+# 📊 Tech Corp Analytics Dashboard
 
-This project is a comprehensive SQL-based business analytics solution developed using a simulated Tech Corp database. The objective is to analyze employees, departments, projects, clients, and locations to generate actionable business insights that support data-driven decision-making.
+## SQL | Power BI | Excel | Business Intelligence
+
+An end-to-end **Business Intelligence** project developed to analyze organizational data and deliver actionable business insights using **SQL, Microsoft Excel, and Power BI**.
+
+This project demonstrates the complete analytics workflow—from querying relational data with SQL, preparing datasets, designing KPI-driven dashboards, and presenting business insights through interactive visualizations.
 
 ---
 
 ## 📌 Project Overview
 
-The project answers real-world business questions using SQL and demonstrates how data can be transformed into meaningful insights for management.
+The Tech Corp Analytics project provides a comprehensive view of the organization's workforce, projects, departmental performance, and financial metrics.
 
-The analysis focuses on:
-
-- Employee Performance Analysis
-- Department Analysis
-- Project Analysis
-- Client Analysis
-- Location Analysis
-
-Each analysis includes:
-
-- Business Question
-- Business Objective
-- SQL Query
-- Query Result
-- Business Insight
-- Business Recommendation
+The dashboard enables business users to monitor key performance indicators, compare departmental performance, analyze project budgets, and evaluate salary distribution through an interactive reporting experience.
 
 ---
 
-## 🛠️ Tools & Technologies
+## 🎯 Business Objectives
+
+- Analyze organizational workforce distribution.
+- Monitor project status across departments.
+- Evaluate department-wise project budgets.
+- Compare salary expenses across departments.
+- Support business decision-making using interactive dashboards.
+- Present business insights through data visualization.
+
+---
+
+## 📊 Dashboard Preview
+
+<p align="center">
+  <img src="Power BI/Tech_Corp_Analytics_Dashboard.png" alt="Dashboard Preview" width="100%">
+</p>
+
+---
+
+# 📈 Key Performance Indicators (KPIs)
+
+| KPI | Value |
+|------|------:|
+| 👥 Total Employees | 5,000 |
+| 🏢 Total Departments | 10 |
+| 📁 Total Projects | 1,000 |
+| 🤝 Total Clients | 500 |
+| 💰 Total Project Budget | ₹261.17 Cr |
+| 💵 Total Salary Expense | ₹69.0 Cr |
+
+---
+
+# 📊 Dashboard Features
+
+### Workforce Analytics
+
+- Total Employees
+- Department-wise Salary Expense
+- Department Filter
+- Workforce Comparison
+
+### Project Analytics
+
+- Project Budget by Department
+- Project Status Distribution
+- Department-wise Project Investment
+
+### Interactive Features
+
+- Department Slicer
+- Dynamic Filtering
+- Cross-Visual Interaction
+
+---
+
+# 📌 Key Business Insights
+
+- IT manages the highest project budget among all departments.
+- Planning and On Hold projects represent the largest share of the project portfolio.
+- Department-wise salary expenses reveal differences in workforce costs.
+- Project budgets are distributed across all departments, indicating balanced investment.
+- Interactive department filtering enables focused business analysis.
+
+---
+
+# 🛠️ Tools & Technologies
 
 - MySQL
-- Microsoft Word
+- Power BI
 - Microsoft Excel
-- Power BI *(Dashboard - Coming Soon)*
+- Microsoft Word
 - GitHub
 
 ---
 
-## 🧠 SQL Concepts Demonstrated
-
-- SELECT
-- WHERE
-- ORDER BY
-- GROUP BY
-- HAVING
-- INNER JOIN
-- LEFT JOIN
-- Aggregate Functions
-  - COUNT()
-  - SUM()
-  - AVG()
-  - MAX()
-  - MIN()
-- CASE Statement
-- Common Table Expressions (CTEs)
-- Window Functions
-  - RANK()
-  - ROW_NUMBER()
-- COALESCE()
-- ROUND()
-
----
-
-## 📂 Project Structure
+# 📂 Repository Structure
 
 ```text
-Tech-Corp-Analytics
+Tech-Corp-Analytics/
 │
-├── README.md
-├── Tech_Corp_Analytics_SQL_Project_Report.docx
+├── Datasets/
+│   ├── Employee.csv
+│   ├── Department.csv
+│   ├── Client.csv
+│   ├── Location.csv
+│   └── Project.csv
 │
-├── SQL
-│   ├── Employee Analysis
-│   ├── Department Analysis
-│   ├── Project Analysis
-│   ├── Client Analysis
-│   └── Location Analysis
+├── SQL/
+│   ├── Employee_Analysis.sql
+│   ├── Department_Analysis.sql
+│   ├── Client_Analysis.sql
+│   ├── Project_Analysis.sql
+│   └── Location_Analysis.sql
 │
-├── Dataset
+├── Excel/
+│   └── Tech_Corp_Analytics_Dashboard.xlsx
 │
-├── Excel
+├── Power BI/
+│   ├── Tech_Corp_Analytics_Dashboard.pbix
+│   └── Tech_Corp_Analytics_Dashboard.png
 │
-└── Power BI
+├── Report/
+│   ├── Tech_Corp_Analytics_Report.pdf
+│   └── Tech_Corp_Analytics_Report.docx
+│
+└── README.md
 ```
 
 ---
 
-## 📊 Business Questions Answered
-
-### Employee Analysis
-- Employee distribution by department
-- Salary analysis
-- Experience analysis
-- Highest paid employees
-- Department workforce insights
-
-### Department Analysis
-- Department budgets
-- Average project budgets
-- Completed projects
-- Project budget contribution
-- Department performance
-
-### Project Analysis
-- Highest budget projects
-- Project status distribution
-- Budget analysis
-- Client project analysis
-- On-hold projects
-
-### Client Analysis
-- Industry analysis
-- Client project counts
-- Project budgets
-- Average budgets
-- Completed projects
-
-### Location Analysis
-- Employee distribution
-- Average salary
-- Average experience
-
----
-
-## 📈 Key Business Insights
-
-- Identified departments managing the highest project budgets.
-- Analyzed project status distribution across the organization.
-- Evaluated client contribution through project investments.
-- Identified locations with the most experienced workforce.
-- Compared salary trends across different office locations.
-- Measured departmental project performance using SQL analytics.
-
----
-
-## 🎯 Skills Demonstrated
-
-### Technical Skills
+# 🚀 Skills Demonstrated
 
 - SQL Query Writing
-- Relational Database Analysis
-- Data Aggregation
+- Data Cleaning
+- Data Analysis
+- Data Modelling
 - Business Intelligence
-- Analytical Reporting
-
-### Business Skills
-
-- Business Problem Solving
-- Data Interpretation
-- Executive Reporting
-- Business Recommendations
-- Decision Support
+- Dashboard Design
+- KPI Development
+- Pivot Tables & Pivot Charts
+- Power BI Visualizations
+- DAX Measures
+- Business Storytelling
+- Data Visualization
 
 ---
 
-## 📄 Project Report
+# 📷 Dashboard Highlights
 
-The complete project documentation is available in the project report.
-
-It includes:
-
-- Business Objectives
-- SQL Queries
-- Query Results
-- Business Insights
-- Business Recommendations
+- Executive KPI Cards
+- Department-wise Project Budget Analysis
+- Department-wise Salary Analysis
+- Project Status Distribution
+- Interactive Department Filtering
+- Modern Executive Dashboard Design
 
 ---
 
-## 🚀 Future Improvements
+# 🎯 Business Value
 
-- Build an interactive Excel Dashboard
-- Develop a Power BI Dashboard
-- Add KPI Metrics
-- Automate reporting using Python
-- Expand the dataset with additional business scenarios
+This dashboard provides decision-makers with a consolidated view of organizational performance by combining workforce, financial, and project metrics into a single interactive report. It supports faster analysis, easier comparison across departments, and more informed business decisions.
 
 ---
 
-## 👨‍💻 Author
+# 📬 Connect With Me
 
 **Sandesh Navnath Nangare**
 
-Aspiring Data Analyst
-
-GitHub:
-https://github.com/sandeshnangare5555-commits
-
-LinkedIn:
-*(Add your LinkedIn profile URL here)*
+- 💼 LinkedIn: www.linkedin.com/in/sandesh-nangare-054434321
+- 💻 GitHub: https://lnkd.in/ds5C_EUj
+- 📧 Email: sandesh.n.nangare@gmail.com
 
 ---
 
-## ⭐ If you found this project useful
-
-If you like this project, consider giving it a ⭐ on GitHub.
+## ⭐ If you found this project interesting, consider giving the repository a star!
