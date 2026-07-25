@@ -33,7 +33,7 @@ The dashboard enables business users to monitor key performance indicators, comp
 
 <p align="center">
  <img width="1116" height="628" alt="Screenshot 2026-07-25 140808" src="https://github.com/user-attachments/assets/da7e7a09-e58e-4e00-a7f6-d904686e7041" />
- width="100%">
+
 </p>
 
 ---
