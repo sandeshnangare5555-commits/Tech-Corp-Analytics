@@ -168,7 +168,7 @@ This dashboard provides decision-makers with a consolidated view of organization
 **Sandesh Navnath Nangare**
 
 - 💼 LinkedIn: www.linkedin.com/in/sandesh-nangare-054434321
-- 💻 GitHub: https://lnkd.in/ds5C_EUj
+- 💻 GitHub: https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics
 - 📧 Email: sandesh.n.nangare@gmail.com
 
 ---
