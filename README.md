@@ -15,7 +15,7 @@ This repository showcases the full analytics lifecycle—from database schema se
 
 [![Live Interactive Dashboard](https://img.shields.io/badge/🚀%20Launch-Live%20Interactive%20Dashboard-indigo?style=for-the-badge&logo=githubpages)](https://sandeshnangare5555-commits.github.io/Tech-Corp-Analytics/)
 
-> 💡 **Click the badge above** or open [`index.html`](./index.html) directly in your browser to explore the fully functional dashboard application!
+> 💡 **Click the badge above** or open [`Tech_Corp_Analytics_Dashboard.html`](./index.html) directly in your browser to explore the fully functional dashboard application!
 
 ---
 
