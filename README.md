@@ -13,7 +13,8 @@ This repository showcases the full analytics lifecycle—from database schema se
 
 ## 🌟 Key Features & Live Demo
 
-* 🌐 **Live Interactive Dashboard:** [View Live Web Application](https://sandeshnangare5555-commits.github.io/Tech-Corp-Analytics/) *(Note: Update this link once GitHub Pages is enabled)*
+* 🌐 **Live Interactive Dashboard:** [View Live Web Application](file:///C:/Users/sande/OneDrive/Desktop/Coding/html/Tech_Corp_Analytics_Dashboard.html.html
+  ) 
 * 📱 **3 Executive Analytics Views:**
   1. **Executive C-Suite Overview:** High-level metrics comparing total project budgets against organizational salary expenses.
   2. **Workforce & Payroll Analytics:** Headcount distribution, department cost centers, and average pay efficiency per employee.
