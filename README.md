@@ -1,176 +1,104 @@
+Markdown
+# 📊 Tech-Corp Analytics | Executive BI Suite & Interactive Web Dashboard
 
+![Tech Stack](https://img.shields.io/badge/Tech%20Stack-SQL%20%7C%20Power%20BI%20%7C%20Python%20%7C%20HTML5%20%7C%20Chart.js-indigo)
+![Project Status](https://img.shields.io/badge/Status-Completed-success)
+![UI Theme](https://img.shields.io/badge/UI-Auro%20Dark%20Theme-purple)
 
-# 📊 Tech Corp Analytics Dashboard
+An end-to-end Business Intelligence and Data Analytics project analyzing multi-relational enterprise datasets across **5,000+ employees, 1,000+ projects, and ₹260+ Cr in capital allocations**. 
 
-## SQL | Power BI | Excel | Business Intelligence
-
-An end-to-end **Business Intelligence** project developed to analyze organizational data and deliver actionable business insights using **SQL, Microsoft Excel, and Power BI**.
-
-This project demonstrates the complete analytics workflow—from querying relational data with SQL, preparing datasets, designing KPI-driven dashboards, and presenting business insights through interactive visualizations.
-
----
-
-## 📌 Project Overview
-
-The Tech Corp Analytics project provides a comprehensive view of the organization's workforce, projects, departmental performance, and financial metrics.
-
-The dashboard enables business users to monitor key performance indicators, compare departmental performance, analyze project budgets, and evaluate salary distribution through an interactive reporting experience.
+This repository showcases the full analytics lifecycle—from database schema setup in **MySQL** and ETL data cleaning in **Excel** to complex **Power BI DAX modeling** and an interactive, AI-collaborated **web dashboard application**.
 
 ---
 
-## 🎯 Business Objectives
+## 🌟 Key Features & Live Demo
 
-- Analyze organizational workforce distribution.
-- Monitor project status across departments.
-- Evaluate department-wise project budgets.
-- Compare salary expenses across departments.
-- Support business decision-making using interactive dashboards.
-- Present business insights through data visualization.
-
----
-
-## 📊 Dashboard Preview
-
-<p align="center">
- <img width="1116" height="628" alt="Screenshot 2026-07-25 140808" src="https://github.com/user-attachments/assets/da7e7a09-e58e-4e00-a7f6-d904686e7041" />
-
-</p>
+* 🌐 **Live Interactive Dashboard:** [View Live Web Application](https://sandeshnangare5555-commits.github.io/Tech-Corp-Analytics/) *(Note: Update this link once GitHub Pages is enabled)*
+* 📱 **3 Executive Analytics Views:**
+  1. **Executive C-Suite Overview:** High-level metrics comparing total project budgets against organizational salary expenses.
+  2. **Workforce & Payroll Analytics:** Headcount distribution, department cost centers, and average pay efficiency per employee.
+  3. **Project Portfolio & Capital Allocation:** Tracking project delivery health (Ongoing, Completed, In Planning, On Hold) and client distribution.
+* 🎛️ **Dynamic Slicing:** Real-time departmental filters that instantly recalculate KPI cards, Chart.js visualizations, and aggregate data tables.
 
 ---
 
-# 📈 Key Performance Indicators (KPIs)
-
-| KPI | Value |
-|------|------:|
-| 👥 Total Employees | 5,000 |
-| 🏢 Total Departments | 10 |
-| 📁 Total Projects | 1,000 |
-| 🤝 Total Clients | 500 |
-| 💰 Total Project Budget | ₹261.17 Cr |
-| 💵 Total Salary Expense | ₹69.0 Cr |
-
----
-
-# 📊 Dashboard Features
-
-### Workforce Analytics
-
-- Total Employees
-- Department-wise Salary Expense
-- Department Filter
-- Workforce Comparison
-
-### Project Analytics
-
-- Project Budget by Department
-- Project Status Distribution
-- Department-wise Project Investment
-
-### Interactive Features
-
-- Department Slicer
-- Dynamic Filtering
-- Cross-Visual Interaction
-
----
-
-# 📌 Key Business Insights
-
-- IT manages the highest project budget among all departments.
-- Planning and On Hold projects represent the largest share of the project portfolio.
-- Department-wise salary expenses reveal differences in workforce costs.
-- Project budgets are distributed across all departments, indicating balanced investment.
-- Interactive department filtering enables focused business analysis.
-
----
-
-# 🛠️ Tools & Technologies
-
-- MySQL
-- Power BI
-- Microsoft Excel
-- Microsoft Word
-- GitHub
-
----
-
-# 📂 Repository Structure
+## 🏗️ System Architecture & Tech Stack
 
 ```text
+┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
+│  Data Modeling (SQL)   │ ───► │  ETL & Power BI DAX    │ ───► │ Interactive Web UI     │
+│ (MySQL Relational Schema)│      │  (Data Transformations) │      │ (HTML / Tailwind / JS) │
+└────────────────────────┘      └────────────────────────┘      └────────────────────────┘
+Databases: MySQL (DDL, DML, Complex Joins, Aggregations)
+
+Data Processing & Cleaning: Microsoft Excel (Pivot Tables, Data Validation)
+
+Business Intelligence: Power BI Desktop (Star Schema Data Modeling, DAX Measures)
+
+Web Frontend / UI: HTML5, Tailwind CSS, Chart.js, FontAwesome Icons
+
+📈 Key Business Questions Solved
+Capital vs. Payroll Efficiency: Evaluates whether high-budget departments (like IT and Engineering) maintain proportional revenue and output relative to their ₹69.00 Cr annual payroll expenditure.
+
+Workforce Headcount Optimization: Identifies workforce ratios across 10 organizational departments to balance staffing demands and prevent over-allocation.
+
+Project Portfolio Health: Tracks project risk by identifying stalled projects ("On Hold") versus active and completed deliverables.
+
+🧮 Sample DAX Measures (Power BI)
+Code snippet
+// 1. Total Project Capital Allocated
+Total Project Budget = SUM(Fact_Projects[AllocatedBudget])
+
+// 2. Year-over-Year Budget Growth %
+YoY Budget Growth = 
+VAR CurrentYearBudget = [Total Project Budget]
+VAR PreviousYearBudget = CALCULATE([Total Project Budget], SAMEPERIODLASTYEAR(Dim_Calendar[Date]))
+RETURN
+DIVIDE(CurrentYearBudget - PreviousYearBudget, PreviousYearBudget, 0)
+
+// 3. Salary-to-Budget Expense Ratio
+Salary Expense Ratio = DIVIDE(SUM(Fact_Payroll[SalaryAmount]), [Total Project Budget], 0)
+📁 Repository Structure
+Plaintext
 Tech-Corp-Analytics/
 │
-├── Datasets/
-│   ├── Employee.csv
-│   ├── Department.csv
-│   ├── Client.csv
-│   ├── Location.csv
-│   └── Project.csv
+├── Datasets/                 # Raw and processed CSV/Excel files
+│   ├── Employees.csv
+│   ├── Departments.csv
+│   └── Projects.csv
 │
-├── SQL/
-│   ├── Employee_Analysis.sql
-│   ├── Department_Analysis.sql
-│   ├── Client_Analysis.sql
-│   ├── Project_Analysis.sql
-│   └── Location_Analysis.sql
+├── SQL/                      # MySQL scripts for table creation and analytics
+│   ├── schema_setup.sql
+│   └── analytics_queries.sql
 │
-├── Excel/
-│   └── Tech_Corp_Analytics_Dashboard.xlsx
+├── Excel/                    # Excel workbooks with pivot analysis
+│   └── Data_Cleaning_Pipeline.xlsx
 │
-├── Power BI/
-│   ├── Tech_Corp_Analytics_Dashboard.pbix
-│   └── Tech_Corp_Analytics_Dashboard.png
+├── Power BI/                 # Power BI project file with DAX measures
+│   └── Tech_Corp_Analytics.pbix
 │
-├── Report/
-│   ├── Tech_Corp_Analytics_Report.pdf
-│   └── Tech_Corp_Analytics_Report.docx
-│
-└── README.md
-```
+├── index.html                # Main Interactive Web Dashboard (HTML/Chart.js)
+└── README.md                 # Project Documentation
+🚀 How to Run the Dashboard Locally
+Clone the Repository:
 
----
+Bash
+git clone [https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics.git](https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics.git)
+Launch the Dashboard:
 
-# 🚀 Skills Demonstrated
+Simply double-click index.html in your file explorer to open the full interactive dashboard in any modern web browser (Chrome, Edge, Firefox, Safari).
 
-- SQL Query Writing
-- Data Cleaning
-- Data Analysis
-- Data Modelling
-- Business Intelligence
-- Dashboard Design
-- KPI Development
-- Pivot Tables & Pivot Charts
-- Power BI Visualizations
-- DAX Measures
-- Business Storytelling
-- Data Visualization
+Explore Power BI File:
 
----
+Open Power BI/Tech_Corp_Analytics.pbix in Power BI Desktop to review the underlying star-schema data model and DAX formulas.
 
-# 📷 Dashboard Highlights
+👤 Author & Contact
+Sandesh Navnath Nangare
 
-- Executive KPI Cards
-- Department-wise Project Budget Analysis
-- Department-wise Salary Analysis
-- Project Status Distribution
-- Interactive Department Filtering
-- Modern Executive Dashboard Design
+Aspiring AI Engineer & Data Analyst
 
----
+💼 LinkedIn: Sandesh Nangare Profile
 
-# 🎯 Business Value
+🐙 GitHub: @sandeshnangare5555-commits
 
-This dashboard provides decision-makers with a consolidated view of organizational performance by combining workforce, financial, and project metrics into a single interactive report. It supports faster analysis, easier comparison across departments, and more informed business decisions.
-
----
-
-# 📬 Connect With Me
-
-**Sandesh Navnath Nangare**
-
-- 💼 LinkedIn: www.linkedin.com/in/sandesh-nangare-054434321
-- 💻 GitHub: https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics
-- 📧 Email: sandesh.n.nangare@gmail.com
-
----
-
-## ⭐ If you found this project interesting, consider giving the repository a star!
+If you find this project insightful, feel free to give it a ⭐️ on GitHub!
