@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech-Corp Analytics - Executive BI Suite</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Custom Scrollbar & Dark Glow Theme matching Auro UI */
+    body { background-color: #0b0d14; color: #f1f5f9; font-family: system-ui, -apple-system, sans-serif; }
+    .glass-card { background: rgba(18, 22, 36, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glass-card:hover { border-color: rgba(99, 102, 241, 0.3); }
+    .active-tab { background-color: #6366f1 !important; color: #ffffff !important; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0d14; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Top Global Navigation Header -->
+  <header class="border-b border-slate-800 bg-slate-950/80 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-[1600px] mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+          <i class="fa-solid fa-chart-line text-lg"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            Tech-Corp Analytics
+            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">Enterprise Edition</span>
+          </h1>
+          <p class="text-xs text-slate-400">Integrated Workforce, Financial & Project Business Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Dashboard View Navigation Tabs -->
+      <nav class="flex bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 gap-1">
+        <button onclick="switchTab('exec')" id="tab-exec" class="active-tab px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 transition-all flex items-center gap-2">
+          <i class="fa-solid fa-gauge-high"></i> 1. Executive Summary
+        </button>
+        <button onclick="switchTab('wf')" id="tab-wf" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">
+          <i class="fa-solid fa-users"></i> 2. Workforce & Salary
+        </button>
+        <button onclick="switchTab('proj')" id="tab-proj" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">
+          <i class="fa-solid fa-folder-kanban"></i> 3. Project & Budget
+        </button>
+      </nav>
+
+      <!-- Global Dashboard Controls -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-filter text-indigo-400 text-xs"></i>
+          <select id="globalDepartmentFilter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 text-slate-200 text-xs rounded-lg px-3 py-2 outline-none focus:border-indigo-500">
+            <option value="All">All Departments</option>
+            <option value="IT">IT</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Sales">Sales</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Finance">Finance</option>
+            <option value="HR">HR</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Multi-Dashboard Container -->
+  <main class="max-w-[1600px] mx-auto px-6 py-6 flex-1 w-full space-y-6">
+
+    <!-- ========================================== -->
+    <!-- DASHBOARD 1: EXECUTIVE C-SUITE OVERVIEW    -->
+    <!-- ========================================== -->
+    <section id="view-exec" class="space-y-6">
+      
+      <!-- Top KPI Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Project Budget</p>
+              <h2 id="kpiExecBudget" class="text-2xl font-bold text-white mt-1">₹261.17 Cr</h2>
+            </div>
+            <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl border border-indigo-500/20">
+              <i class="fa-solid fa-wallet text-xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-xs text-emerald-400">
+            <i class="fa-solid fa-arrow-trend-up mr-1"></i>
+            <span>+14.2% YoY Allocation</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Salary Expense</p>
+              <h2 id="kpiExecSalary" class="text-2xl font-bold text-white mt-1">₹69.00 Cr</h2>
+            </div>
+            <div class="p-3 bg-purple-500/10 text-purple-400 rounded-xl border border-purple-500/20">
+              <i class="fa-solid fa-money-bill-wave text-xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-xs text-slate-400">
+            <span>Avg Salary: <strong class="text-slate-200">₹13.8L / yr</strong></span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Workforce</p>
+              <h2 id="kpiExecHeadcount" class="text-2xl font-bold text-white mt-1">5,000</h2>
+            </div>
+            <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-user-group text-xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-xs text-emerald-400">
+            <span>across 10 Departments</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Portfolio Projects</p>
+              <h2 id="kpiExecProjects" class="text-2xl font-bold text-white mt-1">1,000</h2>
+            </div>
+            <div class="p-3 bg-cyan-500/10 text-cyan-400 rounded-xl border border-cyan-500/20">
+              <i class="fa-solid fa-briefcase text-xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-xs text-cyan-400">
+            <span>500 Global Clients</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section Row 1 -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Budget vs Salary Expense Bar Chart -->
+        <div class="lg:col-span-2 glass-card rounded-2xl p-6">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h3 class="text-base font-bold text-white">Financial Investment by Department</h3>
+              <p class="text-xs text-slate-400">Comparison of Allocated Project Budget vs Salary Expense (₹ Cr)</p>
+            </div>
+            <span class="text-xs text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20">Executive View</span>
+          </div>
+          <div class="h-80">
+            <canvas id="chartExecFinancials"></canvas>
+          </div>
+        </div>
+
+        <!-- Project Status Breakdown -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="mb-6">
+            <h3 class="text-base font-bold text-white">Project Status Distribution</h3>
+            <p class="text-xs text-slate-400">Portfolio Delivery Health</p>
+          </div>
+          <div class="h-80 flex items-center justify-center">
+            <canvas id="chartExecStatus"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Table Section -->
+      <div class="glass-card rounded-2xl p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-base font-bold text-white">Departmental Financial Performance Matrix</h3>
+          <span class="text-xs text-slate-400">Real-time aggregate data</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-900/80 uppercase font-semibold text-slate-400 border-b border-slate-800">
+              <tr>
+                <th class="p-3">Department</th>
+                <th class="p-3 text-right">Employees</th>
+                <th class="p-3 text-right">Projects</th>
+                <th class="p-3 text-right">Project Budget</th>
+                <th class="p-3 text-right">Salary Expense</th>
+                <th class="p-3 text-right">Budget / Employee</th>
+              </tr>
+            </thead>
+            <tbody id="execTableBody" class="divide-y divide-slate-800/50">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- DASHBOARD 2: WORKFORCE & SALARY ANALYTICS  -->
+    <!-- ========================================== -->
+    <section id="view-wf" class="space-y-6 hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Headcount Distribution -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="mb-6">
+            <h3 class="text-base font-bold text-white">Workforce Distribution</h3>
+            <p class="text-xs text-slate-400">Headcount share across departments</p>
+          </div>
+          <div class="h-80 flex items-center justify-center">
+            <canvas id="chartWfHeadcount"></canvas>
+          </div>
+        </div>
+
+        <!-- Salary Outflow Analysis -->
+        <div class="lg:col-span-2 glass-card rounded-2xl p-6">
+          <div class="mb-6">
+            <h3 class="text-base font-bold text-white">Salary Outflow Trend & Averages</h3>
+            <p class="text-xs text-slate-400">Total Salary Expense (₹ Cr) and Average Employee Pay by Dept</p>
+          </div>
+          <div class="h-80">
+            <canvas id="chartWfSalary"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workforce Key Insights Card -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-indigo-500">
+          <h4 class="text-xs font-bold uppercase text-indigo-400 mb-1">Highest Cost Center</h4>
+          <p class="text-lg font-bold text-white">Engineering & IT</p>
+          <p class="text-xs text-slate-400 mt-2">Combined salary bill accounts for 42% of total company payroll expenditure.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-emerald-500">
+          <h4 class="text-xs font-bold uppercase text-emerald-400 mb-1">Avg Pay Efficiency</h4>
+          <p class="text-lg font-bold text-white">₹13.8L / Employee</p>
+          <p class="text-xs text-slate-400 mt-2">Competitive market salary positioning across tech roles.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-purple-500">
+          <h4 class="text-xs font-bold uppercase text-purple-400 mb-1">Workforce Ratio</h4>
+          <p class="text-lg font-bold text-white">1:5 Project Ratio</p>
+          <p class="text-xs text-slate-400 mt-2">Average 5 employees assigned per project initiative.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- DASHBOARD 3: PROJECT & BUDGET PORTFOLIO   -->
+    <!-- ========================================== -->
+    <section id="view-proj" class="space-y-6 hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Budget Allocation Chart -->
+        <div class="lg:col-span-2 glass-card rounded-2xl p-6">
+          <div class="mb-6">
+            <h3 class="text-base font-bold text-white">Project Capital Allocation</h3>
+            <p class="text-xs text-slate-400">Total Allocated Budget (₹ Cr) per Department</p>
+          </div>
+          <div class="h-80">
+            <canvas id="chartProjBudget"></canvas>
+          </div>
+        </div>
+
+        <!-- Client & Region Distribution -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="mb-6">
+            <h3 class="text-base font-bold text-white">Client Portfolio Distribution</h3>
+            <p class="text-xs text-slate-400">Active Clients by Industry Vertical</p>
+          </div>
+          <div class="h-80 flex items-center justify-center">
+            <canvas id="chartProjClients"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Health Table -->
+      <div class="glass-card rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-4">Strategic Project Portfolio Status</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-900/80 uppercase font-semibold text-slate-400 border-b border-slate-800">
+              <tr>
+                <th class="p-3">Department</th>
+                <th class="p-3">Ongoing</th>
+                <th class="p-3">Completed</th>
+                <th class="p-3">In Planning</th>
+                <th class="p-3">On Hold</th>
+                <th class="p-3 text-right">Total Budget</th>
+              </tr>
+            </thead>
+            <tbody id="projTableBody" class="divide-y divide-slate-800/50">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JavaScript Business Logic & Chart Engine -->
+  <script>
+    // Primary Dataset (Reflecting Tech-Corp-Analytics Database Metrics)
+    const rawData = [
+      { dept: "IT", headcount: 1100, projects: 220, budget: 68.50, salary: 16.50, clients: 110, ongoing: 90, completed: 80, planning: 30, onhold: 20 },
+      { dept: "Engineering", headcount: 950, projects: 180, budget: 52.10, salary: 14.20, clients: 95, ongoing: 75, completed: 65, planning: 25, onhold: 15 },
+      { dept: "Sales", headcount: 650, projects: 130, budget: 31.40, salary: 8.80, clients: 85, ongoing: 50, completed: 50, planning: 20, onhold: 10 },
+      { dept: "Marketing", headcount: 500, projects: 110, budget: 28.20, salary: 6.90, clients: 60, ongoing: 45, completed: 40, planning: 15, onhold: 10 },
+      { dept: "Finance", headcount: 450, projects: 90, budget: 22.00, salary: 6.10, clients: 40, ongoing: 35, completed: 35, planning: 12, onhold: 8 },
+      { dept: "HR", headcount: 350, projects: 70, budget: 14.80, salary: 4.50, clients: 30, ongoing: 30, completed: 25, planning: 10, onhold: 5 },
+      { dept: "Operations", headcount: 400, projects: 80, budget: 18.20, salary: 5.20, clients: 35, ongoing: 32, completed: 30, planning: 12, onhold: 6 },
+      { dept: "Legal", headcount: 200, projects: 40, budget: 9.50, salary: 2.80, clients: 18, ongoing: 15, completed: 18, planning: 5, onhold: 2 },
+      { dept: "R&D", headcount: 250, projects: 50, budget: 11.17, salary: 2.60, clients: 17, ongoing: 20, completed: 18, planning: 8, onhold: 4 },
+      { dept: "Support", headcount: 150, projects: 30, budget: 5.30, salary: 1.40, clients: 10, ongoing: 12, completed: 12, planning: 4, onhold: 2 }
+    ];
+
+    let charts = {};
+
+    function switchTab(tabKey) {
+      // Hide all tabs
+      document.getElementById('view-exec').classList.add('hidden');
+      document.getElementById('view-wf').classList.add('hidden');
+      document.getElementById('view-proj').classList.add('hidden');
+
+      // Reset button styles
+      ['exec', 'wf', 'proj'].forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        btn.classList.remove('active-tab', 'text-slate-300');
+        btn.classList.add('text-slate-400');
+      });
+
+      // Show selected tab & set active button
+      document.getElementById(`view-${tabKey}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tabKey}`);
+      activeBtn.classList.add('active-tab');
+      activeBtn.classList.remove('text-slate-400');
+    }
+
+    function applyFilters() {
+      const selectedDept = document.getElementById('globalDepartmentFilter').value;
+      const filtered = selectedDept === 'All' ? rawData : rawData.filter(d => d.dept === selectedDept);
+      
+      updateKPIs(filtered);
+      updateCharts(filtered);
+      updateTables(filtered);
+    }
+
+    function updateKPIs(data) {
+      const totalBudget = data.reduce((acc, c) => acc + c.budget, 0).toFixed(2);
+      const totalSalary = data.reduce((acc, c) => acc + c.salary, 0).toFixed(2);
+      const totalHeadcount = data.reduce((acc, c) => acc + c.headcount, 0).toLocaleString();
+      const totalProjects = data.reduce((acc, c) => acc + c.projects, 0).toLocaleString();
+
+      document.getElementById('kpiExecBudget').innerText = `₹${totalBudget} Cr`;
+      document.getElementById('kpiExecSalary').innerText = `₹${totalSalary} Cr`;
+      document.getElementById('kpiExecHeadcount').innerText = totalHeadcount;
+      document.getElementById('kpiExecProjects').innerText = totalProjects;
+    }
+
+    function initCharts() {
+      // Chart 1: Financials (Bar)
+      const ctx1 = document.getElementById('chartExecFinancials').getContext('2d');
+      charts.execFinancials = new Chart(ctx1, {
+        type: 'bar',
+        data: { labels: [], datasets: [
+          { label: 'Project Budget (₹ Cr)', data: [], backgroundColor: '#6366f1', borderRadius: 6 },
+          { label: 'Salary Expense (₹ Cr)', data: [], backgroundColor: '#a855f7', borderRadius: 6 }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#cbd5e1' } } } }
+      });
+
+      // Chart 2: Status (Doughnut)
+      const ctx2 = document.getElementById('chartExecStatus').getContext('2d');
+      charts.execStatus = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+          labels: ['Ongoing', 'Completed', 'In Planning', 'On Hold'],
+          datasets: [{ data: [0, 0, 0, 0], backgroundColor: ['#10b981', '#6366f1', '#f59e0b', '#ef4444'] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } } } }
+      });
+
+      // Chart 3: Headcount (Pie)
+      const ctx3 = document.getElementById('chartWfHeadcount').getContext('2d');
+      charts.wfHeadcount = new Chart(ctx3, {
+        type: 'pie',
+        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#06b6d4', '#a855f7', '#ec4899', '#3b82f6', '#14b8a6', '#84cc16', '#eab308'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { size: 10 } } } } }
+      });
+
+      // Chart 4: Salary (Line + Bar)
+      const ctx4 = document.getElementById('chartWfSalary').getContext('2d');
+      charts.wfSalary = new Chart(ctx4, {
+        type: 'bar',
+        data: { labels: [], datasets: [{ label: 'Salary Outflow (₹ Cr)', data: [], backgroundColor: 'rgba(168, 85, 247, 0.6)', borderColor: '#a855f7', borderWidth: 2 }] },
+        options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#cbd5e1' } } } }
+      });
+
+      // Chart 5: Project Budget (Horizontal Bar)
+      const ctx5 = document.getElementById('chartProjBudget').getContext('2d');
+      charts.projBudget = new Chart(ctx5, {
+        type: 'bar',
+        data: { labels: [], datasets: [{ label: 'Allocated Capital (₹ Cr)', data: [], backgroundColor: '#10b981', borderRadius: 6 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#cbd5e1' } } } }
+      });
+
+      // Chart 6: Clients (Doughnut)
+      const ctx6 = document.getElementById('chartProjClients').getContext('2d');
+      charts.projClients = new Chart(ctx6, {
+        type: 'doughnut',
+        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#06b6d4', '#6366f1', '#10b981', '#f59e0b'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } } } }
+      });
+    }
+
+    function updateCharts(data) {
+      const depts = data.map(d => d.dept);
+      
+      // Update Financials
+      charts.execFinancials.data.labels = depts;
+      charts.execFinancials.data.datasets[0].data = data.map(d => d.budget);
+      charts.execFinancials.data.datasets[1].data = data.map(d => d.salary);
+      charts.execFinancials.update();
+
+      // Update Status Total
+      const ongoing = data.reduce((a, c) => a + c.ongoing, 0);
+      const completed = data.reduce((a, c) => a + c.completed, 0);
+      const planning = data.reduce((a, c) => a + c.planning, 0);
+      const onhold = data.reduce((a, c) => a + c.onhold, 0);
+      charts.execStatus.data.datasets[0].data = [ongoing, completed, planning, onhold];
+      charts.execStatus.update();
+
+      // Update Headcount
+      charts.wfHeadcount.data.labels = depts;
+      charts.wfHeadcount.data.datasets[0].data = data.map(d => d.headcount);
+      charts.wfHeadcount.update();
+
+      // Update Salary
+      charts.wfSalary.data.labels = depts;
+      charts.wfSalary.data.datasets[0].data = data.map(d => d.salary);
+      charts.wfSalary.update();
+
+      // Update Project Budget
+      charts.projBudget.data.labels = depts;
+      charts.projBudget.data.datasets[0].data = data.map(d => d.budget);
+      charts.projBudget.update();
+
+      // Update Clients
+      charts.projClients.data.labels = depts.slice(0, 4);
+      charts.projClients.data.datasets[0].data = data.slice(0, 4).map(d => d.clients);
+      charts.projClients.update();
+    }
+
+    function updateTables(data) {
+      // Executive Table Injection
+      const execBody = document.getElementById('execTableBody');
+      execBody.innerHTML = '';
+      data.forEach(row => {
+        const bpe = (row.budget * 10000000 / row.headcount).toFixed(0);
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/40 transition";
+        tr.innerHTML = `
+          <td class="p-3 font-semibold text-white">${row.dept}</td>
+          <td class="p-3 text-right">${row.headcount.toLocaleString()}</td>
+          <td class="p-3 text-right">${row.projects}</td>
+          <td class="p-3 text-right text-indigo-400 font-semibold">₹${row.budget.toFixed(2)} Cr</td>
+          <td class="p-3 text-right text-purple-400 font-semibold">₹${row.salary.toFixed(2)} Cr</td>
+          <td class="p-3 text-right text-slate-400">₹${parseInt(bpe).toLocaleString()}</td>
+        `;
+        execBody.appendChild(tr);
+      });
+
+      // Project Status Table Injection
+      const projBody = document.getElementById('projTableBody');
+      projBody.innerHTML = '';
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/40 transition";
+        tr.innerHTML = `
+          <td class="p-3 font-semibold text-white">${row.dept}</td>
+          <td class="p-3 text-emerald-400 font-medium">${row.ongoing}</td>
+          <td class="p-3 text-indigo-400 font-medium">${row.completed}</td>
+          <td class="p-3 text-amber-400 font-medium">${row.planning}</td>
+          <td class="p-3 text-rose-400 font-medium">${row.onhold}</td>
+          <td class="p-3 text-right font-semibold text-white">₹${row.budget.toFixed(2)} Cr</td>
+        `;
+        projBody.appendChild(tr);
+      });
+    }
+
+    // Initialize Dashboard Application
+    window.onload = () => {
+      initCharts();
+      applyFilters();
+    };
+  </script>
+</body>
+</html>
