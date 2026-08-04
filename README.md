@@ -1,5 +1,5 @@
 Markdown
-# 📊 Tech-Corp Analytics | Executive BI Suite & Interactive Web Dashboard
+# 📊 Tech-Corp Analytics | Executive BI Suite & Web Dashboard
 
 ![Tech Stack](https://img.shields.io/badge/Tech%20Stack-SQL%20%7C%20Power%20BI%20%7C%20Python%20%7C%20HTML5%20%7C%20Chart.js-indigo)
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
@@ -11,15 +11,19 @@ This repository showcases the full analytics lifecycle—from database schema se
 
 ---
 
-## 🌟 Key Features & Live Demo
+## 🌐 Live Interactive Dashboard Preview
 
-* 🌐 **Live Interactive Dashboard:** [View Live Web Application](file:///C:/Users/sande/OneDrive/Desktop/Coding/html/Tech_Corp_Analytics_Dashboard.html.html
-  ) 
-* 📱 **3 Executive Analytics Views:**
-  1. **Executive C-Suite Overview:** High-level metrics comparing total project budgets against organizational salary expenses.
-  2. **Workforce & Payroll Analytics:** Headcount distribution, department cost centers, and average pay efficiency per employee.
-  3. **Project Portfolio & Capital Allocation:** Tracking project delivery health (Ongoing, Completed, In Planning, On Hold) and client distribution.
-* 🎛️ **Dynamic Slicing:** Real-time departmental filters that instantly recalculate KPI cards, Chart.js visualizations, and aggregate data tables.
+[![Live Interactive Dashboard](https://img.shields.io/badge/🚀%20Launch-Live%20Interactive%20Dashboard-indigo?style=for-the-badge&logo=githubpages)](https://sandeshnangare5555-commits.github.io/Tech-Corp-Analytics/)
+
+> 💡 **Click the badge above** or open [`index.html`](./index.html) directly in your browser to explore the fully functional dashboard application!
+
+---
+
+## 📱 3 Executive Analytics Views
+
+1. **Executive C-Suite Overview:** High-level strategic metrics comparing total project capital budgets against organizational salary outlays.
+2. **Workforce & Payroll Analytics:** Headcount distribution, department cost centers, and average pay efficiency per employee.
+3. **Project Portfolio & Capital Allocation:** Tracking project delivery health (Ongoing, Completed, In Planning, On Hold) and client industry distribution.
 
 ---
 
@@ -80,14 +84,14 @@ Tech-Corp-Analytics/
 │
 ├── index.html                # Main Interactive Web Dashboard (HTML/Chart.js)
 └── README.md                 # Project Documentation
-🚀 How to Run the Dashboard Locally
+🚀 How to Run the Project Locally
 Clone the Repository:
 
 Bash
 git clone [https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics.git](https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics.git)
-Launch the Dashboard:
+Launch the Web Dashboard:
 
-Simply double-click index.html in your file explorer to open the full interactive dashboard in any modern web browser (Chrome, Edge, Firefox, Safari).
+Double-click index.html in your file explorer to open the interactive dashboard in any modern web browser (Chrome, Edge, Firefox, Safari).
 
 Explore Power BI File:
 
