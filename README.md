@@ -32,7 +32,7 @@ This repository showcases the full analytics lifecycle—from database schema se
 
 ## 🏗️ System Architecture & Tech Stack
 
-```text
+
 ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
 │  Data Modeling (SQL)   │ ───► │  ETL & Power BI DAX    │ ───► │ Interactive Web UI     │
 │ (MySQL Relational Schema)│      │  (Data Transformations) │      │ (HTML / Tailwind / JS) │
