@@ -108,6 +108,7 @@ Aspiring AI Engineer & Data Analyst
 💼 LinkedIn: www.linkedin.com/in/sandesh-nangare-054434321
 
 
-🐙 GitHub:[ @sandeshnangare5555-commits](https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics)
+🐙 GitHub: https://github.com/sandeshnangare5555-commits/Tech-Corp-Analytics
+
 
 If you find this project insightful, feel free to give it a ⭐️ on GitHub!
