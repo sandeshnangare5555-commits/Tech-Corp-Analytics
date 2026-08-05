@@ -31,8 +31,8 @@ This repository showcases the full analytics lifecycle—from database schema se
 ---
 
 ## 🏗️ System Architecture & Tech Stack
-
 '''text
+
 ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
 │  Data Modeling (SQL)   │ ───► │  ETL & Power BI DAX    │ ───► │ Interactive Web UI     │
 │ (MySQL Relational Schema)│      │  (Data Transformations) │      │ (HTML / Tailwind / JS) │
@@ -103,7 +103,7 @@ Open Power BI/Tech_Corp_Analytics.pbix in Power BI Desktop to review the underly
 👤 Author & Contact
 Sandesh Navnath Nangare
 
-Aspiring AI Engineer & Data Analyst '''text
+Aspiring AI Engineer & Data Analyst 
 
 💼 LinkedIn: www.linkedin.com/in/sandesh-nangare-054434321
 
